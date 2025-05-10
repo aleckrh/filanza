@@ -12,3 +12,8 @@ function app_datetime(): string
 {
     return 'd/m/Y H:i:s';
 }
+
+function app_money($number): string
+{
+    return number_format($number, 2, '.', ' ');
+}
