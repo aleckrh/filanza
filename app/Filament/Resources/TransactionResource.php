@@ -240,6 +240,13 @@ class TransactionResource extends Resource
         ];
     }
 
+    public static function getWidgets(): array
+    {
+        return [
+            TransactionResource\Widgets\TransactionOverview::class,
+        ];
+    }
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
