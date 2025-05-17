@@ -19,7 +19,8 @@ class CategorySeeder extends Seeder
             ],
             [
                 'name' => 'Transporte',
-                'description' => 'Gasolina, transporte público, mantenimiento de auto'
+                'description' => 'Gasolina, transporte público, mantenimiento de auto',
+                'is_default' => true,
             ],
             [
                 'name' => 'Alimentación',
@@ -27,7 +28,7 @@ class CategorySeeder extends Seeder
             ],
             [
                 'name' => 'Entretenimiento',
-                'description' => 'Netflix, Spotify, etc'
+                'description' => 'Netflix, Spotify, etc',
             ],
             [
                 'name' => 'Salud',
@@ -44,11 +45,18 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'Sin categoria',
                 'description' => 'Si no sabes en que categoria clasificarlo',
-                'is_default' => true,
+            ],
+            [
+                'name' => 'Salarios',
+                'description' => 'Salario, aguinaldo, bonos',
+            ],
+            [
+                'name' => 'Ingresos extras',
+                'description' => 'Ventas, comisiones, regalos',
             ],
         ];
 
-        foreach($categories as $category){
+        foreach ($categories as $category) {
             \App\Models\Category::create($category);
         }
     }

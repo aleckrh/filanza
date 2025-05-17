@@ -42,11 +42,13 @@ class AccountResource extends Resource
                             ->label('Descripción')
                             ->autocomplete(false)
                             ->maxLength(255),
-                        Forms\Components\TextInput::make('amount')
-                            ->label('Monto')
+                        Forms\Components\TextInput::make('balance')
+                            ->label('Saldo')
                             ->required()
                             ->autocomplete(false)
-                            ->numeric(),
+                            ->numeric()
+                            ->helperText('Se creará una transaccion con el valor ingresado')
+                            ->disabled(fn (string $operation): bool => $operation !== 'create'),
                         Forms\Components\Toggle::make('is_default')
                             ->label('Por defecto')
                             ->helperText('Se marcará por defecto esta cuenta')
@@ -79,10 +81,10 @@ class AccountResource extends Resource
                     ->label('Nombre')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('amount')
-                    ->label('Monto')
+                Tables\Columns\TextColumn::make('balance')
+                    ->label('Saldo')
                     ->formatStateUsing(function ($record) {
-                        return app_money($record->amount);
+                        return app_money($record->balance);
                     })
                     ->sortable(),
                 Tables\Columns\TextColumn::make('is_default')

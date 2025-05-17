@@ -21,4 +21,9 @@ class EditTransaction extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+
+    protected function afterSave(): void
+    {
+        $this->record->account->actualBalance(true);
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\AccountResource\Pages;
 
+use App\Enums\TransactionTypeEnum;
 use App\Filament\Resources\AccountResource;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Database\Eloquent\Model;
@@ -22,5 +23,17 @@ class CreateAccount extends CreateRecord
         }
 
         return static::getModel()::create($data);
+    }
+
+    protected function afterCreate(): void
+    {
+        $this->record->transactions()->create([
+            'name' => 'Monto inicial',
+            'description' => 'Se creo al registrar la cuenta',
+            'amount' => $this->record->balance,
+            'type' => TransactionTypeEnum::INCOME->value,
+            'category_id' => 1,
+            'account_id' => $this->record->id,
+        ]);
     }
 }

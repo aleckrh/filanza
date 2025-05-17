@@ -15,12 +15,10 @@ class AccountSeeder extends Seeder
         $accounts = [
             [
                 'name' => 'Ahorros',
-                'amount' => 1000,
                 'user_id' => 1,
             ],
             [
                 'name' => 'Otros',
-                'amount' => 500,
                 'user_id' => 1,
             ],
         ];
